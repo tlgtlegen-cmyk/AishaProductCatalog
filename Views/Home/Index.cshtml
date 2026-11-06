@@ -1,0 +1,96 @@
+@model AURA.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Талғампаз таңдау";
+}
+
+<section class="hero-section">
+    <div class="container hero-content">
+        <div class="hero-copy">
+            <p class="eyebrow"><span></span> Заттарға жаңа көзқарас</p>
+            <h1>Сапа мен стильдің <em>үйлесімі</em></h1>
+            <p class="hero-description">Күнделікті сәттеріңізді ерекше ететін, мұқият таңдалған технология мен дизайн.</p>
+            <a class="button button-light" asp-controller="Products" asp-action="Index">
+                Каталогты қарау <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <div class="hero-note"><span class="hero-note-line"></span> Ойластырылған таңдаулар топтамасы</div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-photo">
+                <img src="/images/hero.jpg" alt="Жұмыс үстеліндегі заманауи технологиялар" fetchpriority="high" />
+            </div>
+            <div class="hero-stamp"><span>ТАЛҒАМ</span><strong>01</strong><span>2026</span></div>
+            <span class="hero-orbit" aria-hidden="true"></span>
+        </div>
+    </div>
+    <div class="hero-index" aria-hidden="true">AURA / 01</div>
+</section>
+
+<section class="section-shell categories-section" id="categories">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow eyebrow-dark">Өз әлеміңізді табыңыз</p>
+                <h2>Әр сәтке арналған <em>таңдау</em></h2>
+            </div>
+            <a class="text-link" asp-controller="Products" asp-action="Index">Барлық өнімдер <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="category-grid">
+            @for (var index = 0; index < Model.Categories.Count; index++)
+            {
+                var category = Model.Categories[index];
+                <a class="category-card category-card-@index" asp-controller="Products" asp-action="Index" asp-route-category="@category.Slug">
+                    <img src="@category.ImageUrl" alt="@category.Name санаты" loading="lazy" />
+                    <span class="category-shade"></span>
+                    <span class="category-content">
+                        <span class="category-number">0@(index + 1)</span>
+                        <span class="category-name">@category.Name</span>
+                        <span class="category-description">@category.Description</span>
+                    </span>
+                    <span class="category-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="section-shell featured-section">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow eyebrow-dark">Таңдаулы топтама</p>
+                <h2>Көптің көңілінен <em>шыққандар</em></h2>
+            </div>
+            <a class="text-link" asp-controller="Products" asp-action="Index">Барлық өнімдер <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="product-grid">
+            @foreach (var product in Model.FeaturedProducts)
+            {
+                <partial name="_ProductCard" model="product" />
+            }
+        </div>
+    </div>
+</section>
+
+<section class="story-section" id="about">
+    <div class="container story-inner">
+        <div class="story-image">
+            <img src="/images/story.jpg" alt="AURA топтамасына арналған ұқыпты жұмыс орны" loading="lazy" />
+            <span class="story-image-note">АЗ ДА БОЛСА — МӘНДІ</span>
+        </div>
+        <div class="story-copy">
+            <p class="eyebrow"><span></span> AURA философиясы</p>
+            <h2>Артық емес.<br /><em>Дәл керегі.</em></h2>
+            <p>Біз күн сайын қолданыста болатын заттардың сапасы да, көркі де маңызды деп сенеміз. Әр өнімді пайдалы қызметі, ойластырылған пішіні және ұзаққа жарамдылығы үшін таңдаймыз.</p>
+            <div class="story-points">
+                <div><strong>01</strong><span>Мұқият таңдалған сапа</span></div>
+                <div><strong>02</strong><span>Уақытқа төзімді дизайн</span></div>
+                <div><strong>03</strong><span>Күнделікті жайлылық</span></div>
+            </div>
+            <a class="button button-outline" asp-controller="Products" asp-action="Index">Топтамамен танысу <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}

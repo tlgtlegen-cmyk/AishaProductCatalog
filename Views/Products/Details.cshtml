@@ -1,0 +1,48 @@
+@model AURA.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="details-section">
+    <div class="container">
+        <div class="details-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Басты бет</a><span>/</span>
+            <a asp-controller="Products" asp-action="Index">Каталог</a><span>/</span>
+            <span>@Model.Name</span>
+        </div>
+        <div class="details-layout">
+            <div class="details-image">
+                <img src="@Model.ImageUrl" alt="@Model.Name" />
+                <span class="details-image-index">AURA / @Model.Id.ToString("00")</span>
+            </div>
+            <div class="details-copy">
+                <p class="eyebrow eyebrow-dark">@Model.Category.Name</p>
+                <h1>@Model.Name</h1>
+                <p class="details-price">@Model.Price.ToString("N0") <span>₸</span></p>
+                <div class="details-rule"></div>
+                <h2>Өнім туралы</h2>
+                <p class="details-description">@Model.Description</p>
+                <div class="details-availability">
+                    @if (Model.IsAvailable)
+                    {
+                        <span class="availability"><i aria-hidden="true"></i> Қолжетімді</span>
+                        <span>Тапсырыс қабылдауға дайын</span>
+                    }
+                    else
+                    {
+                        <span class="availability unavailable"><i aria-hidden="true"></i> Қолжетімсіз</span>
+                        <span>Қазір қоймада жоқ</span>
+                    }
+                </div>
+                <a class="button button-dark details-back" asp-controller="Products" asp-action="Index">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Каталогқа оралу
+                </a>
+                <p class="details-note"><i class="fa-solid fa-leaf" aria-hidden="true"></i> AURA таңдауы — сапаға деген ұқыпты көзқарас.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/details.css" asp-append-version="true" />
+}

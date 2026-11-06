@@ -1,0 +1,78 @@
+@model AURA.ViewModels.CatalogViewModel
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<section class="catalog-hero">
+    <div class="container">
+        <p class="eyebrow"><span></span> AURA топтамасы</p>
+        <h1>Әр таңдаудың <em>өз мәні бар.</em></h1>
+        <p>Күнделікті өмірге үйлесетін дизайн мен сапалы технология.</p>
+        <div class="catalog-breadcrumb"><a asp-controller="Home" asp-action="Index">Басты бет</a><span>/</span><span>Каталог</span></div>
+    </div>
+</section>
+
+<section class="catalog-section">
+    <div class="container">
+        <form class="catalog-filters" asp-controller="Products" asp-action="Index" method="get" role="search">
+            <div class="filter-search">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <label class="visually-hidden" for="catalogSearch">Өнім атауы немесе сипаттамасы</label>
+                <input id="catalogSearch" type="search" name="q" value="@Model.SearchTerm" placeholder="Өнім атауын іздеу..." />
+            </div>
+            <div class="filter-category">
+                <label for="categoryFilter">Санат</label>
+                <select id="categoryFilter" name="category">
+                    <option value="">Барлық санат</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Slug" selected="@(Model.SelectedCategory == category.Slug)">@category.Name</option>
+                    }
+                </select>
+            </div>
+            <button class="button button-dark filter-button" type="submit">Іздеу <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+            @if (!string.IsNullOrWhiteSpace(Model.SearchTerm) || !string.IsNullOrWhiteSpace(Model.SelectedCategory))
+            {
+                <a class="clear-filters" asp-controller="Products" asp-action="Index">Тазарту</a>
+            }
+        </form>
+
+        <div class="catalog-results">
+            <div class="result-count">
+                <strong>@Model.Products.Count.ToString("00")</strong>
+                <span>@(Model.Products.Count == 1 ? "өнім табылды" : "өнім табылды")</span>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.SearchTerm))
+            {
+                <p class="result-query">«@Model.SearchTerm» бойынша іздеу</p>
+            }
+        </div>
+
+        @if (Model.Products.Count > 0)
+        {
+            <div class="product-grid catalog-grid">
+                @foreach (var product in Model.Products)
+                {
+                    <partial name="_ProductCard" model="product" />
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <span><i class="fa-solid fa-box-open" aria-hidden="true"></i></span>
+                <h2>Өнім табылмады</h2>
+                <p>Іздеу сөзін өзгертіп көріңіз немесе барлық өнімді шолыңыз.</p>
+                <a class="button button-dark" asp-controller="Products" asp-action="Index">Барлық өнімдер</a>
+            </div>
+        }
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/catalog.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script src="~/js/catalog.js" asp-append-version="true"></script>
+}

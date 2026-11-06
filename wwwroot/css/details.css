@@ -1,0 +1,28 @@
+.details-section { min-height: 70vh; padding: 43px 0 105px; }
+.details-breadcrumb { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 33px; color: #858c84; font-size: 10px; }
+.details-breadcrumb a { color: var(--forest); }
+.details-breadcrumb a:hover { color: #8d9a83; }
+.details-layout { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(42px, 8vw, 112px); }
+.details-image { position: relative; overflow: hidden; min-height: 430px; background: #e8e4d9; }
+.details-image img { width: 100%; height: 100%; min-height: 430px; object-fit: cover; }
+.details-image-index { position: absolute; right: 16px; bottom: 16px; padding: 8px 10px; background: rgba(246,243,234,.9); color: var(--forest); font-size: 8px; letter-spacing: .12em; }
+.details-copy { padding: 10px 0; }
+.details-copy .eyebrow { margin-bottom: 16px; }
+.details-copy h1 { max-width: 510px; margin: 0 0 19px; color: var(--forest); font-family: var(--serif); font-size: clamp(38px, 4.7vw, 58px); font-weight: 500; letter-spacing: -.045em; line-height: 1.12; }
+.details-price { margin: 0; color: var(--forest); font-size: 19px; font-weight: 700; }
+.details-price span { color: var(--gold); }
+.details-rule { width: 100%; height: 1px; margin: 27px 0 23px; background: var(--line); }
+.details-copy h2 { margin: 0 0 12px; color: var(--forest); font-family: var(--serif); font-size: 20px; font-weight: 500; }
+.details-description { margin: 0; color: #6e7971; font-size: 12px; line-height: 2; }
+.details-availability { display: flex; align-items: center; gap: 13px; margin-top: 24px; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.details-availability > span:last-child { color: #8a928b; font-size: 10px; }
+.details-back { margin-top: 25px; }
+.details-note { display: flex; align-items: center; gap: 8px; margin: 23px 0 0; color: #8a928b; font-size: 9px; }
+.details-note i { color: #879779; }
+
+@media (max-width: 767.98px) {
+    .details-section { padding: 30px 0 70px; }
+    .details-layout { grid-template-columns: 1fr; gap: 37px; }
+    .details-image, .details-image img { min-height: 0; aspect-ratio: 1 / .87; }
+    .details-copy h1 { font-size: 43px; }
+}
