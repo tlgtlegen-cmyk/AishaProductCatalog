@@ -31,3 +31,5 @@ C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\refint\AURA.dll
 C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\AURA.pdb
 C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\AURA.genruntimeconfig.cache
 C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\ref\AURA.dll
+C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\AURA.sourcelink.json
+C:\Users\Nurdaulet\Desktop\айша2\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
